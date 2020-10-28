@@ -1,12 +1,12 @@
 document.getElementById("issueInputForm").addEventListener("submit", (e) => {
 
-    var issueDesription = document.getElementById("issueDescInput").value;
-    var issueSeverity = document.getElementById("issueSeverityInput").value;
-    var issueAssignedTo = document.getElementById("issueAssignedToInput").value;
-    var issueID = chance.guid();
-    var status = "open";
+    const issueDesription = document.getElementById("issueDescInput").value;
+    const issueSeverity = document.getElementById("issueSeverityInput").value;
+    const issueAssignedTo = document.getElementById("issueAssignedToInput").value;
+    const issueID = chance.guid();
+    const status = "open";
 
-    var issue = {
+    const issue = {
         id: issueID,
         description: issueDesription,
         severity: issueSeverity,
@@ -16,11 +16,11 @@ document.getElementById("issueInputForm").addEventListener("submit", (e) => {
 
 
     if (localStorage.getItem("issues") == null) {
-        var issues = [];
+        const issues = [];
         issues.push(issue);
         localStorage.setItem("issues", JSON.stringify(issues));
     } else {
-        var issues = JSON.parse(localStorage.getItem("issues"));
+        const issues = JSON.parse(localStorage.getItem("issues"));
         issues.push(issue);
         localStorage.setItem("issues", JSON.stringify(issues));
     }
@@ -32,9 +32,9 @@ document.getElementById("issueInputForm").addEventListener("submit", (e) => {
 })
 
 const setStatusClosed = (id) => {
-    var issues = JSON.parse(localStorage.getItem("issues"));
+    const issues = JSON.parse(localStorage.getItem("issues"));
 
-    for (var i = 0; i < issues.length; i++) {
+    for (const i = 0; i < issues.length; i++) {
         if (issues[i].id == id) {
             issues[i].status = "closed"
         }
@@ -45,9 +45,9 @@ const setStatusClosed = (id) => {
 }
 
 const deleteIssue = (id) => {
-    var issues = JSON.parse(localStorage.getItem("issues"));
+    const issues = JSON.parse(localStorage.getItem("issues"));
 
-    for (var i = 0; i < issues.length; i++) {
+    for (const i = 0; i < issues.length; i++) {
         if (issues[i].id == id) {
             issues.splice(i, 1)
         }
@@ -58,17 +58,17 @@ const deleteIssue = (id) => {
 }
 
 const fetchIssue = () => {
-    var issues = JSON.parse(localStorage.getItem("issues"));
-    var issuesList = document.getElementById("issuesList");
+    const issues = JSON.parse(localStorage.getItem("issues"));
+    const issuesList = document.getElementById("issuesList");
 
     issuesList.innerHTML = "";
 
-    for (var i = 0; i < issues.length; i++) {
-        var id = issues[i].id;
-        var description = issues[i].description;
-        var severity = issues[i].severity;
-        var assignedTo = issues[i].assignedTo
-        var status = issues[i].status;
+    for (const i = 0; i < issues.length; i++) {
+        const id = issues[i].id;
+        const description = issues[i].description;
+        const severity = issues[i].severity;
+        const assignedTo = issues[i].assignedTo
+        const status = issues[i].status;
 
         issuesList.innerHTML +=
             '<div class="well">' +
